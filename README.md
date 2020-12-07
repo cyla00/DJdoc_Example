@@ -160,3 +160,7 @@ def allowed_users(allowed_roles=[]):
         return wrapper_func
     return decorator
 ```
+
+# useful links docs and tutorials:
+* [official django docs](https://www.djangoproject.com/)
+* a very well done [tutorial](https://www.youtube.com/watch?v=xv_bwpA_aEA&list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO) with a series of videos showing a django project creation
