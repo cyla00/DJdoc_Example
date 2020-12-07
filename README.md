@@ -50,14 +50,14 @@ if you wish to extend one of those tables or modify them dont run the migration 
 
 * check log => ```Starting development server at http://127.0.0.1:8000/``` (if running in local), open the url on a browser and if all was setup correctly a django welcome page should show.
 
-## 4) start writing the project
+## 3) start writing the project
 * The django file structure is basically a file "projects" that contains "apps", project urls.py is responsible for the url routing in your site from pages to apps<br/>
 ![file structure](https://djangobook.com/wp-content/uploads/structure_drawing1_new.png "base django project structure")
 
 * create an app with: ```$ django manage.py startapp NAME_APP```<br/>
 to add the app at the main project, go to root path ./settings.py and under INSTALLED_APPS, add as an app the folder name of the app just created.
 
-## 5) app manipulation
+## 4) app manipulation
 the app itself is devided in different parts:
 * urls.py is responsible for the internal url routing of the app (example: "home" will be "/home") and when we search /home in the url, the view linked to that will be executed, example:
 ```py
@@ -142,8 +142,6 @@ def notAutheticated(view_func):
             return view_func(request, *args, **kwargs)
 
     return wrapper_func
-
-
 
 
 # this function will make a query asking for the groups we have in our database/users groups, good practice is to create groups with some determined roles so every user part of that group will have the specific permissions already setup.
