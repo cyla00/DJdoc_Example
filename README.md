@@ -59,8 +59,35 @@ to add the app at the main project, go to root path ./settings.py and under INST
 
 ## 5) app manipulation
 the app itself is devided in different parts:
-* views.py is responsible of the rendering of your html files and the database interactions (queries etc..)
-* urls.py is responsible for the internal url routing of the app (example: "home" will be "/home") and when we search /home in the url, the view linked to that will be executed.
+* urls.py is responsible for the internal url routing of the app (example: "home" will be "/home") and when we search /home in the url, the view linked to that will be executed, example:
+```py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('home/', views.home, name='home'),
+    path('products/', views.products, name='products'),
+]
+
+
+#to pass a variable into the url (to get the ID of a specific element: "ctx_id")
+path('products/<str:ctx_id>/', views.products, name='home')
+#the home/ url will require the id to be filled, example: home/1/
+```
+* views.py is responsible of the rendering of your html files and the database interactions (queries etc..), example:
+```py
+#just a home page, it renders the templates/NAME_APP/home.html
+def home(request):
+    ctx = {}
+    return render(request, 'NAME_APP/home.html', ctx)
+
+
+def products(request):
+    products = product.objects.all()
+    ctx = {'products':products}  
+    #what the ctx variable  does is making a variable that we can recall inside an html file using tags, example:  <p>{{products}}</p> . we can also use IF and FOR inside {%  %} 
+    return render(request, 'NAME_APP/products.html', ctx)
+```
 * models.py is responsible of the table structure of your database, every object in that file is a table that will be shown into the database every time we migrate it, example:
 ```py
 from django.db import models
