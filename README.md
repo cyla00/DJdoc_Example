@@ -51,7 +51,7 @@ if you wish to extend one of those tables or modify them dont run the migration 
 * check log => ```Starting development server at http://127.0.0.1:8000/``` (if running in local), open the url on a browser and if all was setup correctly a django welcome page should show.
 
 ## 3) start writing the project
-* The django file structure is basically a file "projects" that contains "apps", project urls.py is responsible for the url routing in your site from pages to apps<br/>
+* The django file structure is basically a file "project" that contains "apps", project urls.py is responsible for the url routing in your site from pages to apps<br/>
 ![file structure](https://djangobook.com/wp-content/uploads/structure_drawing1_new.png "base django project structure")
 
 * create an app with: ```$ django manage.py startapp NAME_APP```<br/>
