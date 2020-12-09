@@ -1,0 +1,27 @@
+{% extends 'main/main.html' %}
+
+{% block content %}
+
+<div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Groups</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>staff</th>
+            </tr>
+            <tr>
+                {% for field in form %}
+                <td>{{field}}</td>
+                {% endfor %}
+            </tr>
+        </table>
+        <input type="submit" name="modify" id="">
+    </form>
+</div>
+
+{% endblock %}

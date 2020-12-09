@@ -1,0 +1,46 @@
+{% extends 'main/main.html' %}
+
+{% block content %}
+
+<div>
+
+    <table>
+        <tr>
+            <th>username</th>
+            <th>email</th>
+            <th>groups</th>
+            <th>is admin</th>
+            <th>is staff</th>
+            <th>joined</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.groups}}</td>
+            <td>{{user.is_superuser}}</td>
+            <td>{{user.is_staff}}</td>
+            <td>{{user.date_joined}}</td>
+            <td><a href="{% url 'update_usr' user.id %}">modify</a></td>
+            <td><a href="{% url 'delete_usr' user.id %}">delete</a></td>  
+        </tr>
+        {% endfor %}
+    </table>
+
+    <table>
+        <tr>
+            <th>groups</th>
+            <th><a href="">+</a></th>
+        </tr>
+        {% for group in groups %}
+        <tr>
+            <td>{{group}}</td>
+            <td><a href="">modify</a></td>
+            <td><a href="">delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</div>
+
+{% endblock %}

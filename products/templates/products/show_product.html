@@ -1,0 +1,26 @@
+{% extends 'main/main.html' %}
+
+{% block content %}
+<div>
+    <table>
+        <tr>
+            <th>title</th>
+            <th>price</th>
+            <th>category</th>
+            <th>description</th>
+        </tr>
+        {% for element in single %}
+    
+        <tr>
+            <td>{{element.prod_title}}</td>
+            <td>{{element.prod_price}}</td>
+            <td>{{element.prod_category}}</td>
+            <td>{{element.prod_description}}</td>
+            <td><a href="{% url 'product_list' %}">back</a></td>
+        </tr>
+    
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

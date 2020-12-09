@@ -1,0 +1,38 @@
+{% extends 'main/main.html' %}
+
+
+{% block content %}
+
+<div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+
+        {{field.label}}
+        {{field}}
+        
+        {% endfor %}
+        <input type="submit" name="register" id="" value="register">
+
+<!-- shows a custom message of success -->
+        <div>
+            {% for message in messages %}
+
+            <p>{{message}}</p>
+
+            {% endfor %}
+        </div>
+
+<!-- shows errors if the form is not filled correctly -->
+        <div>
+            <p>{{form.errors}}</p>
+        </div>
+        
+        <div>
+            <p>already registered? <a href="{% url 'login' %}">Login</a></p>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}

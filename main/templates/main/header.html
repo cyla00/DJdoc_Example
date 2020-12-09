@@ -1,0 +1,21 @@
+<header>
+    <a href=""><img src="https://i.ibb.co/NS03y1N/shop.png" alt="logo" width="40" height="40"></a>
+    <a href="/">about us</a>
+    {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+        <a href="/products/list">products</a>
+        <a href="/usr/admin">admin panel</a>
+        <a href="/usr/logout">logout</a>
+        {% elif user.is_staff %}
+        <a href="/products/list">products</a>
+        <a href="/usr/moderation">moderation</a>
+        <a href="/usr/logout">logout</a>
+        {% else %}
+        <a href="/products/list">products</a>
+        <a href="/usr/logout">logout</a>
+        {% endif %}
+    {% else %}
+    <a href="/usr/login">login</a>
+    <a href="/usr/register">register</a>
+    {% endif %}
+</header>

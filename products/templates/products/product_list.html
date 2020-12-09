@@ -1,0 +1,22 @@
+{% extends 'main/main.html' %}
+
+{% block content %}
+<div>
+    <table>
+        <tr>
+            <th>title</th>
+            <th>price</th>
+        </tr>
+        {% for element in list %}
+    
+        <tr>
+            <td>{{element.prod_title}}</td>
+            <td>{{element.prod_price}}</td>
+            <td><a href="{% url 'show_product' element.id %}">show more</a></td>
+        </tr>
+    
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
