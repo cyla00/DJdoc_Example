@@ -66,11 +66,11 @@ def admin(request):
     return render(request, 'users/admin.html', ctx)
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['staff'])
+@allowed_users(allowed_roles=['staff', 'admin'])
 def moderation(request):
 
     users= get_user_model().objects.all()
-
+    
     ctx = {'users':users}
     return render(request, 'users/moderator.html', ctx)
 
@@ -83,7 +83,8 @@ def update_usr(request, usr_id):
         form = usr_dashboardUpdate(request.POST, instance=usr)
         if form.is_valid():
             form.save()
-            if User.is_superuser:
+            current = request.user
+            if current.is_superuser:
                 return redirect('/usr/admin')
             else:
                 return redirect('/usr/moderation')
@@ -99,10 +100,11 @@ def delete_usr(request, usr_id):
 
     if request.method == 'POST':
         user.delete()
-        if User.is_superuser:
-            return redirect('/usr/admin')
-        else:
-            return redirect('/usr/moderation')
+        current = request.user
+            if current.is_superuser:
+                return redirect('/usr/admin')
+            else:
+                return redirect('/usr/moderation')
 
     ctx = {'user':user}
     return render(request, 'users/usr_delete.html', ctx)
