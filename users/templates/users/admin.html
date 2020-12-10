@@ -37,12 +37,12 @@
         {% for group in groups %}
         <tr>
             <td>{{group}}</td>
-            <td><a href="">modify</a></td>
-            <td><a href="">delete</a></td>
+            <td><a href="{% url 'groupModify' group.id %}">modify</a></td>
+            <td><a href="{% url 'groupDelete' group.id %}">delete</a></td>
         </tr>
         {% endfor %}
     </table>
-    
+
 
     <table>
         <tr>
@@ -58,8 +58,8 @@
             <td>{{setting.setting_name}}</td>
             <td>{{setting.setting_value}}</td>
             <td>{{setting.setting_description}}</td>
-            <td><a href="">modify</a></td>
-            <td><a href="">delete</a></td>
+            <td><a href="{% url 'settModify' setting.id %}">modify</a></td>
+            <td><a href="{% url 'settDelete' setting.id %}">delete</a></td>
 
         {% endfor %}
         </tr>

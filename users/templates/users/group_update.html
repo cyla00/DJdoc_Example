@@ -7,9 +7,8 @@
         {% csrf_token %}
         <table>
             <tr>
-                <th>title</th>
-                <th>value</th>
-                <th>description</th>
+                <th>Name</th>
+                <th>Permissions</th>
             </tr>
             <tr>
                 {% for field in form %}
@@ -18,6 +17,7 @@
             </tr>
         </table>
         <input type="submit" name="modify" id="">
+        <a href="{% url 'admin' %}">cancel</a>
     </form>
 </div>
 

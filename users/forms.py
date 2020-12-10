@@ -15,3 +15,13 @@ class usr_dashboardUpdate(UserChangeForm):
         model = User
         fields = ['username', 'email', 'groups', 'first_name', 'last_name', 'is_staff']
         # fields = '__all__'
+
+class settings_form(ModelForm):
+    class Meta:
+        model = Setting
+        fields = '__all__'
+
+class goroup_form(ModelForm):
+    class Meta:
+        model = Group
+        fields = '__all__'

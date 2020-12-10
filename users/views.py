@@ -12,6 +12,11 @@ from django.contrib.auth.models import User, Group
 from .forms import *
 from .decorators import *
 
+
+
+############################# moderation and user management #############################
+
+
 @notAutheticated #checks the authentication, if authenticated then redirect
 def register(request):
 
@@ -101,11 +106,77 @@ def delete_usr(request, usr_id):
 
     if request.method == 'POST':
         user.delete()
-        current_user = request.user
-        if current_user.is_superuser:
-            return redirect('/usr/admin')
-        else:
-            return redirect('/usr/moderation')
+        return redirect('/usr/admin')
 
     ctx = {'user':user}
-    return render(request, 'users/usr_delete.html', ctx)
+    return render(request, 'users/delete.html', ctx)
+
+
+
+############################# SETTINGS #############################
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def update_settings(request, sett_id):
+    settings = Setting.objects.get(id=sett_id)
+    form = settings_form(instance=settings)
+
+    if request.method == 'POST':
+        form = settings_form(request.POST, instance=settings)
+        if form.is_valid():
+            form.save()
+            current_user = request.user
+            if current_user.is_superuser:
+                return redirect('/usr/admin')
+            else:
+                return redirect('/usr/moderation')
+
+    ctx = {'form':form}
+    return render(request, 'users/setting_update.html', ctx)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def delete_setting(request, sett_id):
+    settings = Setting.objects.get(id=sett_id)
+
+    if request.method == 'POST':
+        settings.delete()
+        return redirect('/usr/admin')
+
+    ctx = {'settings':settings}
+    return render(request, 'users/delete.html', ctx)
+
+
+
+############################# Groups #############################
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def update_group(request, group_id):
+    group = Group.objects.get(id=group_id)
+    form = goroup_form(instance=group)
+
+    if request.method == 'POST':
+        form = goroup_form(request.POST, instance=group)
+        if form.is_valid():
+            form.save()
+            current_user = request.user
+            if current_user.is_superuser:
+                return redirect('/usr/admin')
+            else:
+                return redirect('/usr/moderation')
+
+    ctx = {'form':form}
+    return render(request, 'users/group_update.html', ctx)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def delete_group(request, group_id):
+    group = Group.objects.get(id=group_id)
+
+    if request.method == 'POST':
+        group.delete()
+        return redirect('/usr/admin')
+
+    ctx = {'group':group}
+    return render(request, 'users/delete.html', ctx)
