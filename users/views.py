@@ -82,6 +82,7 @@ def moderation(request):
 
 
 def update_usr(request, usr_id):
+
     usr = User.objects.get(id=usr_id)
     form = usr_dashboardUpdate(instance=usr)
 
@@ -114,6 +115,20 @@ def delete_usr(request, usr_id):
 
 
 ############################# SETTINGS #############################
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def add_settings(request):
+    add_form = settings_form()
+    if request.method == 'POST':
+        add_form = settings_form(request.POST)
+        if add_form.is_valid():
+            add_form.save()
+            return redirect('admin')
+
+    ctx = {'form':add_form}
+    return render(request, 'users/setting_add.html', ctx)
+
+
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])
@@ -149,6 +164,19 @@ def delete_setting(request, sett_id):
 
 
 ############################# Groups #############################
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def add_group(request):
+    add_form = goroup_form()
+    if request.method == 'POST':
+        add_form = goroup_form(request.POST)
+        if add_form.is_valid():
+            add_form.save()
+            return redirect('admin')
+
+    ctx = {'form':add_form}
+    return render(request, 'users/group_add.html', ctx)
+
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin'])

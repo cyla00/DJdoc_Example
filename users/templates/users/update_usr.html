@@ -21,6 +21,11 @@
             </tr>
         </table>
         <input type="submit" name="modify" id="">
+        {% if user.is_superuser %}
+        <a href="{% url 'admin' %}">cancel</a>
+        {% else %}
+        <a href="{% url 'moderation' %}">cancel</a>
+        {% endif %}
     </form>
 </div>
 

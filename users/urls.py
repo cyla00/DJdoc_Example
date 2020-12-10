@@ -9,8 +9,10 @@ urlpatterns = [
     path('moderation/', views.moderation, name='moderation'),
     path('update/<str:usr_id>/', views.update_usr, name='update_usr'),
     path('delete/<str:usr_id>/', views.delete_usr, name='delete_usr'),
+    path('settAdd/', views.add_settings, name='add_settings'),
     path('settUpdate/<str:sett_id>/', views.update_settings, name='settModify'),
     path('settDelete/<str:sett_id>/', views.delete_setting, name='settDelete'),
+    path('groupAdd/', views.add_group, name='add_group'),
     path('groupUpdate/<str:group_id>/', views.update_group, name='groupModify'),
     path('groupDelete/<str:group_id>/', views.delete_group, name='groupDelete'),
 ]

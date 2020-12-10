@@ -32,7 +32,7 @@
         <tr>
             <p>groups</p>
             <th>title</th>
-            <th><a href="">+</a></th>
+            <th><a href="{% url 'add_group' %}">+</a></th>
         </tr>
         {% for group in groups %}
         <tr>
@@ -50,7 +50,7 @@
             <th>title</th>
             <th>value</th>
             <th>description</th>
-            <th><a href="">+</a></th>
+            <th><a href="{% url 'add_settings' %}">+</a></th>
         </tr>
         <tr>
         {% for setting in settings %}
