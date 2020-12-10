@@ -16,5 +16,5 @@ class Product(models.Model):
     prod_price = models.DecimalField(decimal_places=2, max_digits=20, null=True)
     prod_description = models.TextField(default='null', null=True)
 
-    def __str__(self):
-        return self.prod_title
+    # def __str__(self):
+    #     return self.prod_title

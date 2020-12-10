@@ -1,6 +1,6 @@
 <header>
-    <a href=""><img src="https://i.ibb.co/NS03y1N/shop.png" alt="logo" width="40" height="40"></a>
-    <a href="/">about us</a>
+    <a href="/"><img src="https://i.ibb.co/NS03y1N/shop.png" alt="logo" width="40" height="40"></a>
+    <a href="{% url 'about' %}">about us</a>
     {% if user.is_authenticated %}
         {% if user.is_superuser %}
         <a href="/products/list">products</a>

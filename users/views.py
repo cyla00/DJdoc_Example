@@ -62,7 +62,8 @@ def admin(request):
 
     users= get_user_model().objects.all()
     groups = Group.objects.all()
-    ctx = {'users':users, 'groups':groups}
+    settings = Setting.objects.all()
+    ctx = {'users':users, 'groups':groups, 'settings':settings}
     return render(request, 'users/admin.html', ctx)
 
 @login_required(login_url='login')
@@ -83,8 +84,8 @@ def update_usr(request, usr_id):
         form = usr_dashboardUpdate(request.POST, instance=usr)
         if form.is_valid():
             form.save()
-            current = request.user
-            if current.is_superuser:
+            current_user = request.user
+            if current_user.is_superuser:
                 return redirect('/usr/admin')
             else:
                 return redirect('/usr/moderation')
@@ -100,11 +101,11 @@ def delete_usr(request, usr_id):
 
     if request.method == 'POST':
         user.delete()
-        current = request.user
-            if current.is_superuser:
-                return redirect('/usr/admin')
-            else:
-                return redirect('/usr/moderation')
+        current_user = request.user
+        if current_user.is_superuser:
+            return redirect('/usr/admin')
+        else:
+            return redirect('/usr/moderation')
 
     ctx = {'user':user}
     return render(request, 'users/usr_delete.html', ctx)

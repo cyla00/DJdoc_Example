@@ -16,3 +16,7 @@ def home(request):
 
     ctx = {}
     return render(request, 'main/home.html', ctx)
+
+def about(request):
+    ctx = {}
+    return render(request, 'main/about.html', ctx)
