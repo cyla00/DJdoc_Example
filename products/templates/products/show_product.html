@@ -17,6 +17,10 @@
             <td>{{element.prod_category}}</td>
             <td>{{element.prod_description}}</td>
             <td><a href="{% url 'product_list' %}">back</a></td>
+            {% if user.is_superuser %}
+            <td><a href="{% url 'update_prod' element.id %}">modify</a></td>
+            <td><a href="{% url 'product_list' %}">delete</a></td>
+            {% endif %}
         </tr>
     
         {% endfor %}

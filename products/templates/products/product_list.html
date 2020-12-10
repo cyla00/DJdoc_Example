@@ -6,6 +6,9 @@
         <tr>
             <th>title</th>
             <th>price</th>
+            {% if user.is_superuser %}
+            <th><a href="{% url 'add_product' %}">+</a></th>
+            {% endif %}
         </tr>
         {% for element in list %}
     
