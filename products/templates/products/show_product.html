@@ -19,7 +19,7 @@
             <td><a href="{% url 'product_list' %}">back</a></td>
             {% if user.is_superuser %}
             <td><a href="{% url 'update_prod' element.id %}">modify</a></td>
-            <td><a href="{% url 'product_list' %}">delete</a></td>
+            <td><a href="{% url 'delete_prod' element.id %}">delete</a></td>
             {% endif %}
         </tr>
     

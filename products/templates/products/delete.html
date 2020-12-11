@@ -1,0 +1,15 @@
+{% extends 'main/main.html' %}
+
+{% block content %}
+
+<div>
+    <p>sure you want to delete?</p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="delete">
+        <a href="{% url 'admin' %}">cancel operation</a>
+    </form>
+    
+</div>
+
+{% endblock %}

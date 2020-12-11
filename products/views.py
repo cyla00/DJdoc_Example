@@ -19,7 +19,7 @@ def add_product(request):
             return redirect('product_list')
 
     ctx = {'form':add_form}
-    return render(request, 'users/group_add.html', ctx)
+    return render(request, 'products/add_product.html', ctx)
 
 def products(request):
     list = Product.objects.all()
@@ -46,3 +46,16 @@ def update_prod(request, pr_id):
 
     ctx = {'form':form}
     return render(request, 'products/modify_product.html', ctx)
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin'])
+def delete_prod(request, pr_id):
+    prod = Product.objects.get(id=pr_id)
+
+    if request.method == 'POST':
+        prod.delete()
+        return redirect('product_list')
+
+    ctx = {'prod':prod}
+    return render(request, 'products/delete.html', ctx)
