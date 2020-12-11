@@ -100,6 +100,11 @@ class product(models.Model):
 ```
 to push that into the database we have to prepare the actions we want to execute running ```$ python manage.py makemigrations``` this will automatically create a migration file with a denomination like "0001" "0002" etc...
 then we make the actual migration with ```$ python manage.py migrate``` and at this point the database is up to date.
+If we create a new column while having data in that table, the column will be filled with the "null" value if ```null=True``` is set for all the rows of that table,
+if we choose to modify the type of an already existent column for example from textField to Decimal, the migration will throw an error such as ```django.db.utils.DataError: invalid input syntax for type numeric:```,
+trying to eliminate a filled column, the site will nor recognise the column anymore, but looking at the database table the column will still be present and filled.
+To grant more flexibility, django has it's shell that behaves like a psql shell, so running this command ```$ python manage.py dbshell``` will give us the possibility to manipulate the DB from terminal and so the possibility to DROP unwanted columns.
+
 * forms.py manages our custom forms, if we want to create a from for the product table, we would recall that object and select the elements we want to include inside the form, example:
 ```py
 from django import forms
@@ -160,6 +165,11 @@ def allowed_users(allowed_roles=[]):
         return wrapper_func
     return decorator
 ```
+# versions used:
+* python 3.8.5
+* django 3.1.2
+* postgresql 12.2
+* psycopg2 2.8.5
 
 # useful links docs and tutorials:
 * [official django docs](https://www.djangoproject.com/)

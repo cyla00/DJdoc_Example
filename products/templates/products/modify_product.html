@@ -7,8 +7,10 @@
         {% csrf_token %}
         <table>
             <tr>
-                <th>Name</th>
-                <th>Permissions</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Description</th>
             </tr>
             <tr>
                 {% for field in form %}
