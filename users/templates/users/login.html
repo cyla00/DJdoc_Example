@@ -2,16 +2,16 @@
 
 {% block content %}
 
-<div>
-    <form action="" method="POST">
+<div class="w-25 p-3 m-auto align-items-center">
+    <form action="" method="POST" class="row text-center">
         {% csrf_token %}
-        <label for="username">username</label>
-        <input type="text" name="username" id="">
+        <label class="mt-5 mb-2 text-dark fs-5" for="username">username</label>
+        <input class="text-center" type="text" name="username" id="">
 
-        <label for="password">password</label>
-        <input type="password" name="password" id="">
+        <label class="mt-5 mb-2 text-dark fs-5" for="password">password</label>
+        <input class="text-center" type="password" name="password" id="">
 
-        <input type="submit" name="login" id="" value="login">
+        <input class="w-25 mt-5 m-auto btn btn-success" type="submit" name="login" id="" value="login">
 
         <div>
             {% for message in messages %}
@@ -22,7 +22,10 @@
         </div>
         
         <div>
-            <p>don't have an account? <a href="{% url 'register' %}">sign up</a></p>
+            <p class="fs-4">don't have an account? <a href="{% url 'register' %}">sign up</a></p>
+            <p class="fs-5 text-warning">location: users/templates/users/login.html</p>
+            <p class="fs-5 text-warning">views -> login(request)</p>
+            <p class="fs-5 text-warning">urls -> login/ -> views.login</p>
         </div>
     </form>
     

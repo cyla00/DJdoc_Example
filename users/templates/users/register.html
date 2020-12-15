@@ -3,16 +3,15 @@
 
 {% block content %}
 
-<div>
-    <form action="" method="POST">
+<div class="w-25 p-3 m-auto align-items-center">
+    <form action="" method="POST" class="row text-center">
         {% csrf_token %}
         {% for field in form %}
-
-        {{field.label}}
+        <label class="mt-5 mb-2 text-dark fs-5" for="">{{field.label}}</label>
         {{field}}
         
         {% endfor %}
-        <input type="submit" name="register" id="" value="register">
+        <input class="w-25 mt-5 m-auto btn btn-success" type="submit" name="register" id="" value="register">
 
 <!-- shows a custom message of success -->
         <div>
@@ -29,7 +28,10 @@
         </div>
         
         <div>
-            <p>already registered? <a href="{% url 'login' %}">Login</a></p>
+            <p class="fs-4">already registered? <a href="{% url 'login' %}">Login</a></p>
+            <p class="fs-5 text-warning">location: users/templates/users/register.html</p>
+            <p class="fs-5 text-warning">views -> register(request)</p>
+            <p class="fs-5 text-warning">urls -> register/ -> views.register</p>
         </div>
 
     </form>
