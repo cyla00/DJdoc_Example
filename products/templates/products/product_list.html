@@ -1,25 +1,28 @@
 {% extends 'main/main.html' %}
 
 {% block content %}
-<div>
-    <table>
-        <tr>
-            <th>title</th>
-            <th>price</th>
+<div class="p-3 m-auto align-items-center">
+    <table class="p-3 m-auto align-items-center">
+        <tr class="bg-light text-center">
             {% if user.is_superuser %}
-            <th><a href="{% url 'add_product' %}">+</a></th>
+            <th><a class="text-decoration-none btn fs-3" href="{% url 'add_product' %}">+</a></th>
             {% endif %}
         </tr>
         {% for element in list %}
     
-        <tr>
-            <td>{{element.prod_title}}</td>
-            <td>{{element.prod_price}}</td>
-            <td><a href="{% url 'show_product' element.id %}">show more</a></td>
+        <tr class="row text-center border m-2 p-5">
+            <td class="mt-5 mb-2 text-dark fs-5">{{element.prod_title}}</td>
+            <td class="mt-5 mb-2 text-dark fs-5">{{element.prod_price}}<span> EUR</span></td>
+            <td><a class="mt-5 m-auto btn btn-success" href="{% url 'show_product' element.id %}">show more</a></td>
         </tr>
     
         {% endfor %}
     </table>
+    <div class="text-center mt-5">
+        <p class="fs-5 text-warning">location: products/templates/products/product_list.html</p>
+        <p class="fs-5 text-warning">views -> products(request)</p>
+        <p class="fs-5 text-warning">urls -> list/ -> views.products</p>
+    </div>
 </div>
 
 {% endblock %}

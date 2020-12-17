@@ -3,8 +3,8 @@
 
 {% block content %}
 
-<div>
-    <form action="" method="POST">
+<div class="p-3 m-auto align-items-center">
+    <form class="row w-25 m-auto text-center" action="" method="POST">
         {% csrf_token %}
         {% for field in form %}
 
@@ -12,8 +12,10 @@
         {{field}}
         
         {% endfor %}
-        <input type="submit" name="add_sett" id="" value="add">
-        <a href="{% url 'admin' %}">cancel</a>
+        <div class="mt-5">
+            <input class="m-auto btn btn-success" type="submit" name="add_sett" id="" value="add">
+            <a class="m-auto btn btn-danger" href="{% url 'admin' %}">cancel</a>
+        </div>   
     </form>
 </div>
 

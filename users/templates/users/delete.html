@@ -2,12 +2,12 @@
 
 {% block content %}
 
-<div>
-    <p>sure you want to delete?</p>
+<div class="row p-3 m-auto align-items-center text-center">
+    <p class="fs-4">sure you want to delete?</p>
     <form action="" method="POST">
         {% csrf_token %}
-        <input type="submit" value="delete">
-        <a href="{% url 'admin' %}">cancel operation</a>
+        <input class="m-auto btn btn-danger" type="submit" value="delete">
+        <a class="m-auto btn btn-warning" href="{% url 'admin' %}">cancel operation</a>
     </form>
     
 </div>

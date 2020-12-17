@@ -2,69 +2,71 @@
 
 {% block content %}
 
-<div>
+<div class="row p-3 m-auto align-items-center">
 
-    <table>
-        <tr>
-            <p>users registered</p>
-            <th>username</th>
-            <th>email</th>
-            <th>groups</th>
-            <th>is admin</th>
-            <th>is staff</th>
-            <th>joined</th>
+    <table class="text-center border p-5 mb-5">
+        <p class="text-center fs-4">users registered</p>
+        <tr class="bg-light">
+            <th class="fs-3">username</th>
+            <th class="fs-3">email</th>
+            <th class="fs-3">groups</th>
+            <th class="fs-3">is admin</th>
+            <th class="fs-3">is staff</th>
+            <th class="fs-3">joined</th>
         </tr>
         {% for user in users %}
-        <tr>
+        <tr class="border">
             <td>{{user.username}}</td>
             <td>{{user.email}}</td>
             <td>{{user.group}}</td>
             <td>{{user.is_superuser}}</td>
             <td>{{user.is_staff}}</td>
             <td>{{user.date_joined}}</td>
-            <td><a href="{% url 'update_usr' user.id %}">modify</a></td>
-            <td><a href="{% url 'delete_usr' user.id %}">delete</a></td>  
+            <td><a class="m-auto btn btn-success" href="{% url 'update_usr' user.id %}">modify</a></td>
+            <td><a class="m-auto btn btn-danger" href="{% url 'delete_usr' user.id %}">delete</a></td>  
         </tr>
         {% endfor %}
     </table>
 
-    <table>
-        <tr>
-            <p>groups</p>
-            <th>title</th>
-            <th><a href="{% url 'add_group' %}">+</a></th>
+    <table class="text-center border p-5 mb-5">
+        <p class="text-center fs-4">groups</p>
+        <tr class="bg-light">
+            <th class="fs-3">title</th>
+            <th><a class="text-decoration-none btn fs-3 border" href="{% url 'add_group' %}">+</a></th>
         </tr>
         {% for group in groups %}
-        <tr>
+        <tr class="border">
             <td>{{group}}</td>
-            <td><a href="{% url 'groupModify' group.id %}">modify</a></td>
-            <td><a href="{% url 'groupDelete' group.id %}">delete</a></td>
+            <td><a class="m-auto btn btn-success" href="{% url 'groupModify' group.id %}">modify</a></td>
+            <td><a class="m-auto btn btn-danger" href="{% url 'groupDelete' group.id %}">delete</a></td>
         </tr>
         {% endfor %}
     </table>
 
 
-    <table>
-        <tr>
-            <p>site settings</p>
-            <th>title</th>
-            <th>value</th>
-            <th>description</th>
-            <th><a href="{% url 'add_settings' %}">+</a></th>
+    <table class="text-center border p-5">
+        <p class="text-center fs-4">site settings</p>
+        <tr class="bg-light">
+            <th class="fs-3">title</th>
+            <th class="fs-3">value</th>
+            <th class="fs-3">description</th>
+            <th><a class="text-decoration-none btn fs-3 border" href="{% url 'add_settings' %}">+</a></th>
         </tr>
-        <tr>
         {% for setting in settings %}
-
-            <td>{{setting.setting_name}}</td>
-            <td>{{setting.setting_value}}</td>
-            <td>{{setting.setting_description}}</td>
-            <td><a href="{% url 'settModify' setting.id %}">modify</a></td>
-            <td><a href="{% url 'settDelete' setting.id %}">delete</a></td>
-
+            <tr class="border">
+                <td>{{setting.setting_name}}</td>
+                <td>{{setting.setting_value}}</td>
+                <td>{{setting.setting_description}}</td>
+                <td><a class="m-auto btn btn-success" href="{% url 'settModify' setting.id %}">modify</a></td>
+                <td><a class="m-auto btn btn-danger" href="{% url 'settDelete' setting.id %}">delete</a></td>
+            </tr>
         {% endfor %}
-        </tr>
-        
     </table>
+    <div class="text-center mt-5">
+        <p class="fs-5 text-warning">location: users/templates/users/admin.html</p>
+        <p class="fs-5 text-warning">views -> admin(request)</p>
+        <p class="fs-5 text-warning">urls -> admin/ -> views.admin</p>
+    </div>
 </div>
 
 {% endblock %}

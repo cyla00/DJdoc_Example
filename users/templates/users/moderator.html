@@ -2,10 +2,11 @@
 
 {% block content %}
 
-<div>
+<div class="row p-3 m-auto align-items-center">
 
-    <table>
-        <tr>
+    <table class="text-center border p-5 mb-5">
+        <p class="text-center fs-4">customers</p>
+        <tr class="bg-light">
             <th>username</th>
             <th>email</th>
             <th>groups</th>
@@ -15,19 +16,23 @@
         </tr>
         {% for user in users %}
         {% if not user.is_superuser and not user.is_staff %}
-        <tr>
+        <tr class="border">
             <td>{{user.username}}</td>
             <td>{{user.email}}</td>
             <td>{{user.groups}}</td>
             <td>{{user.is_superuser}}</td>
             <td>{{user.is_staff}}</td>
             <td>{{user.date_joined}}</td>
-            <td><a href="{% url 'update_usr' user.id %}">modify</a></td> 
+            <td><a class="m-auto btn btn-success" href="{% url 'update_usr' user.id %}">modify</a></td> 
         </tr>
         {% endif %}
         {% endfor %}
     </table>
-    
-</div>
+    <div class="text-center mt-5">
+        <p class="fs-5 text-warning">location: users/templates/users/moderator.html</p>
+        <p class="fs-5 text-warning">views -> moderation(request)</p>
+        <p class="fs-5 text-warning">urls -> moderation/ -> views.moderation</p>
+    </div>
+</div> 
 
 {% endblock %}
